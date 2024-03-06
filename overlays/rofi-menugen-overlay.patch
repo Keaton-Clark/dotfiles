@@ -1,0 +1,29 @@
+diff --git a/menugen b/menugen
+index 2aa6b17..2fd2e74 100755
+--- a/menugen
++++ b/menugen
+@@ -14,9 +14,9 @@ function RENDERMENU() {
+ 	fi
+ 	if [[ "$(uname)" == "Linux" ]]; then
+ 		if [[ "$3" == true ]]; then
+-			echo -e "$1" | rofi -dmenu -p "$2"
++			echo -e "$1" | rofi -dmenu -i -p "$2"
+ 		else
+-			echo -e "$1" | rofi -dmenu -p "$2"
++			echo -e "$1" | rofi -dmenu -i -p "$2"
+ 		fi
+ 	fi
+ 	if [[ "$(uname)" == "Darwin" ]]; then
+diff --git a/menugenbase b/menugenbase
+index 26ee666..0ec22ec 100755
+--- a/menugenbase
++++ b/menugenbase
+@@ -3,7 +3,7 @@
+ # Internal values
+ declare -ga PREVMENU=("")
+ declare -ga PREVNAME=("")
+-CURRENTMENU="main" # Keeps track of the current menu
++CURRENTMENU=${CURRENTMENU:=main} # Keeps track of the current menu, you can set it with an environment variable when calling the script
+ HASH="" # MD5 hash of current menu text for searching MENU data structures
+ SCRIPTNAME="$1"
+ 
