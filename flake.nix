@@ -1,13 +1,13 @@
 {
   description = "System flake";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-23.05";
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -26,18 +26,15 @@
 
     system = "x86_64-linux";
 
-    nixvim' = nixvim.legacyPackages.${system};
-    nixvimModule = {
-      module = import ./modules/common/shell/neovim;
+    nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule {
+      module = import ./packages/neovim;
     };
-    nvim = nixvim'.makeNixvimWithModule nixvimModule;
-  in rec
-  {
+  in {
     nixosConfigurations = {
       helm = import ./hosts/helm { inherit inputs globals overlays; };
     };
     packages = {
-      x86_64-linux.neovim = nvim;
+      ${system}.neovim = nvim;
     };
     templates = {
       latex = {

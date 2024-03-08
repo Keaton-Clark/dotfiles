@@ -28,7 +28,7 @@
     };
   };
 
-  config = let stateVersion = "23.05";
+  config = let stateVersion = "23.11";
   in {
     time.timeZone = config.timeZone;
     # Default packages for all systems

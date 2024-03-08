@@ -1,6 +1,7 @@
 { inputs, globals, overlays, ... }:
 inputs.nixpkgs.lib.nixosSystem {
   system = "x86_64-linux";
+  specialArgs = {inherit inputs;};
   modules = [
     globals
     inputs.home-manager.nixosModules.home-manager

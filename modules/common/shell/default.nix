@@ -1,7 +1,9 @@
-{ lib, config, ... }: {
+{ lib, config, pkgs, inputs, ... }: {
   imports = [
     ./zsh.nix
     ./tmux.nix
-    ./neovim.nix
+  ];
+  config.environment.systemPackages = [
+      inputs.self.packages.x86_64-linux.neovim
   ];
 }
