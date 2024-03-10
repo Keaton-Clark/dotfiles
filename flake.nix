@@ -2,6 +2,10 @@
   description = "System flake";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,6 +36,7 @@
   in {
     nixosConfigurations = {
       helm = import ./hosts/helm { inherit inputs globals overlays; };
+      hardtack = import ./hosts/hardtack { inherit inputs globals overlays; };
     };
     packages = {
       ${system}.neovim = nvim;

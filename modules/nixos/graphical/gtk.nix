@@ -1,12 +1,12 @@
 {pkgs, config, lib, ...}: {
-  home-manager.users.${config.user} = {
+  home-manager.users.${config.user} = lib.mkIf config.gui.enable {
     home.packages = with pkgs; [
       xournalpp
       dconf
       gnome.adwaita-icon-theme
       kicad
     ];
-    gtk = {
+    gtk = lib.mkIf config.gui.enable {
       enable = true;
       font = {
         package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
