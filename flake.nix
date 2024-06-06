@@ -24,7 +24,7 @@
     globals = {
       user = "kc";
       fullName = "Keaton Clark";
-      email = "keatonclark2@gmail.com";
+      email = "keaton.clark@horiba.com";
       timeZone = "America/Los_Angeles";
     };
 

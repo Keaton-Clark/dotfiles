@@ -20,6 +20,7 @@ inputs.nixpkgs.lib.nixosSystem {
         nativeSystemd = true;
         wslConf.network.generateResolvConf = true; # Turn off if it breaks VPN
       };
+      nix.settings.experimental-features = [ "nix-command" "flakes" ];
     }
   ];
 }
