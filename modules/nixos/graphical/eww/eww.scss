@@ -1,0 +1,127 @@
+$bg_h: #1d2021;
+$bg:   #282828;
+$bg_s: #32302f;
+$bg1:  #3c3836;
+$bg2:  #504945;
+$bg3:  #665c54;
+$bg4:  #7c6f64;
+
+$fg:  #fbf1c7;
+$fg1: #ebdbb2;
+$fg2: #d5c4a1;
+$fg3: #bdae93;
+$fg4: #a89984;
+
+$red:    #fb4934;
+$green:  #b8bb26;
+$yellow: #fabd2f;
+$blue:   #83a598;
+$purple: #d3869b;
+$aqua:   #8ec07c;
+$gray:   #928374;
+$orange: #fe8019;
+
+$red-dim:    #cc2412;
+$green-dim:  #98971a;
+$yellow-dim: #d79921;
+$blue-dim:   #458588;
+$purple-dim: #b16286;
+$aqua-dim:   #689d6a;
+$gray-dim:   #a89984;
+$orange-dim: #d65d0e;
+
+progressbar {
+	margin-bottom: 1em;
+	margin: 1em;
+	&>trough {
+		border: none;
+		border-radius: 15px;
+		background-image: linear-gradient($red-dim, $yellow-dim, $green-dim, $green-dim, $green-dim, $green-dim);
+		min-height: 2em;
+		min-width: 2em;
+		> progress {
+			min-width: 2em;
+			background-color: $bg;
+		}
+	}
+	&.inverse>trough {
+		background-image: linear-gradient($green-dim, $green-dim, $green-dim, $green-dim, $green-dim, $green-dim, $yellow-dim, $red-dim);
+	}
+}
+
+.workspace {
+	background-color: rgba($bg, .8);
+	border-radius: 15px;
+	padding-left: 1em;
+	padding-right: 1em;
+	> button {
+		border: none;
+		color: $bg2;
+		font-size: 1.25em;
+		background-color: rgba($bg, 0);
+		padding-left: .5em;
+		padding-right: .5em;
+		&.filled {
+			color: $fg3;
+		}
+		&.current-true {
+			font-size: 1.75em;
+			color: $red;
+		}
+	}
+}
+.left, .right, .center {
+}
+.bar {
+	border: none;
+	background-color: rgba($bg, 0);
+}
+
+.time {
+	background-color: rgba($red, .5);
+	color: $fg;
+	margin-right: 2em;
+	padding: 1em;
+	border-radius: 15px;
+	font-size: 1.25em;
+}
+.menu_button {
+	padding: 0em;
+	> button {
+		all: unset;
+		background-color: rgba($red, .5);
+		color: $fg;
+		border-radius: 15px;
+		padding:0em;
+		padding-right: .72em;
+		padding-left: .6em;
+		font-size: 3em;
+	}
+}
+.music {
+	background-color: rgba($bg, .8);
+	color: $fg2;
+	padding: 1em;
+	border-radius: 15px;
+	padding-left: 1em;
+	&> button {
+		all: unset;
+		color: $fg2;
+		font-size: 2em;
+		margin-right: .5em;
+	}
+}
+.sys {
+	background-color: rgba($bg, .8);
+	color: $fg2;
+	padding-right: 1em;
+	padding-left: 1em;
+	margin-right: 1em;
+	border-radius: 15px;
+	padding-right: 1em;
+	font-size: 2em;
+}
+.launcher {
+	border: 1px solid red;
+	background-color: rgba($bg, 0);
+}

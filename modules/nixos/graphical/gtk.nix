@@ -6,7 +6,12 @@
       gnome.adwaita-icon-theme
       kicad
     ];
-    gtk = lib.mkIf config.gui.enable {
+    services = {
+      dunst = {
+        enable = true;
+      };
+    };
+    gtk = {
       enable = true;
       font = {
         package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };

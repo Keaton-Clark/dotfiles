@@ -6,6 +6,7 @@
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    utils.url = "github:numtide/flake-utils";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,10 +16,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, nixvim, ... }@inputs: 
+  outputs = { self, nixpkgs, nixvim, utils, ... }@inputs: 
   let
     overlays = [
-      (import ./overlays/rofi-menugen.nix)
+      (import ./overlays/rofi-menugen.nix { inherit nixpkgs system; })
     ];
     
     globals = {
@@ -38,8 +39,8 @@
       helm = import ./hosts/helm { inherit inputs globals overlays; };
       hardtack = import ./hosts/hardtack { inherit inputs globals overlays; };
     };
-    packages = {
-      ${system}.neovim = nvim;
+    packages.${system} = {
+      neovim = nvim;
     };
     templates = {
       latex = {

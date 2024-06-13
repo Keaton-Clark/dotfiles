@@ -5,6 +5,9 @@
   ];
   environment.systemPackages = [
       inputs.self.packages.x86_64-linux.neovim
+      pkgs.rofi-menugen
+      pkgs.jq
+      pkgs.socat
   ];
   home-manager.users.${config.user} = {
     programs.git = {

@@ -35,7 +35,7 @@
       "ebdbb2"
     ];
   };
-  xdg.portal = {
+  xdg.portal.config = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
