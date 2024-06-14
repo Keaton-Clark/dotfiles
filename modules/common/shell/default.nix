@@ -8,6 +8,8 @@
       pkgs.comma
       pkgs.man-pages
       pkgs.man-pages-posix
+      pkgs.jq
+      pkgs.fzf
   ];
   home-manager.users.${config.user} = {
     programs.git = {

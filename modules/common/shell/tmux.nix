@@ -21,6 +21,11 @@
         bind-key -T copy-mode-vi 'C-j' select-pane -D
         bind-key -T copy-mode-vi 'C-k' select-pane -U
         bind-key -T copy-mode-vi 'C-l' select-pane -R
+
+        bind-key -n 'C-Left' resize-pane -L 1
+        bind-key -n 'C-Down' resize-pane -D 1
+        bind-key -n 'C-Up' resize-pane -U 1
+        bind-key -n 'C-Right' resize-pane -R 1
       '';
     };
   };
