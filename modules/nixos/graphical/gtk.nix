@@ -8,19 +8,32 @@
     ];
     services = {
       dunst = {
-        enable = true;
+        enable = false;
       };
     };
-    gtk = {
+    gtk = 
+    let 
+      theme = pkgs.gruvbox-gtk-theme.overrideAttrs(o: { 
+        preInstall = ''
+          mkdir -p $out/share
+          cp -r ./icons $out/share
+        '';
+      });
+    in 
+    {
       enable = true;
       font = {
         package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
         name = "JetBrainsMono Nerd Font";
         size = 8;
       };
+      iconTheme = {
+        package = theme;
+        name = "Gruvbox-Dark";
+      };
       theme = {
-        package = pkgs.gruvbox-dark-gtk;
-        name = "gruvbox-dark";
+        package = theme;
+        name = "Gruvbox-Dark-B";
       };
     };
   };
