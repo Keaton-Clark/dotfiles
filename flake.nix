@@ -15,9 +15,10 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-colors.url = "github:misterio77/nix-colors";
     ags.url = "github:Aylur/ags";
   };
-  outputs = { self, nixpkgs, nixvim, utils, ... }@inputs: 
+  outputs = { self, nixpkgs, nixvim, utils, nix-colors, ... }@inputs: 
   let
     overlays = [
       (import ./overlays/rofi-menugen.nix { inherit nixpkgs system; })
