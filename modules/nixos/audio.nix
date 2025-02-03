@@ -1,6 +1,5 @@
 { config, pkgs, lib, ... }: {
   config = {
-    sound.enable = true;
     services.pipewire = {
       enable = true;
       alsa = {
@@ -8,29 +7,44 @@
         support32Bit = true;
       };
       pulse.enable = true;
-      jack.enable = true;
+      audio.enable = true;
+      wireplumber = {
+        enable = true;
+        configPackages = [
+          (pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
+            bluez_monitor.properties = {
+              ["bluez5.enable-sbc-xq"] = true,
+              ["bluez5.enable-msbc"] = true,
+              ["bluez5.enable-hw-volume"] = true,
+              ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+            }
+          '')
+        ];
+      };
     };
     home-manager.users.${config.user} = {
       home.packages = with pkgs; [
-        mpc-cli
-        ncmpcpp
         ytmdl
+        playerctl
       ];
       services.mpd = {
         enable = true;
         network = {
           startWhenNeeded = true;
-          listenAddress = "any";
         };
         extraConfig = ''
           audio_output {
-            type "alsa"
-            name "Alsa"
+            type "pulse"
+            name "Pulse"
             mixer_type "hardware"
-            mixer_device "default"
           }
         '';
       };
+      services.mpdris2 = {
+        enable = true;
+        notifications = true;
+      };
+      services.playerctld.enable = true;
     };
   };
 }
