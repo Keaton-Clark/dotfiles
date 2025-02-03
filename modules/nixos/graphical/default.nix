@@ -8,7 +8,6 @@
     ./chrome.nix
     ./gtk.nix
     ./discord.nix
-    ./ags
     ./virtualbox.nix
   ];
   config = {

@@ -1,11 +1,14 @@
 {pkgs, config, lib, ...}: {
   home-manager.users.${config.user} = lib.mkIf config.gui.enable {
-    home.packages = with pkgs; [
-      xournalpp
-      dconf
-      gnome.adwaita-icon-theme
-      kicad
-    ];
+    home = {
+      packages = with pkgs; [
+        dconf
+        gnome.adwaita-icon-theme
+      ];
+      sessionVariables = {
+        GTK_THEME = "Gruvbox-Dark";
+      };
+    };
     services = {
       dunst = {
         enable = false;
@@ -33,7 +36,7 @@
       };
       theme = {
         package = theme;
-        name = "Gruvbox-Dark-B";
+        name = "Gruvbox-Dark";
       };
     };
   };
