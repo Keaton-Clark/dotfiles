@@ -2,28 +2,46 @@
   config = lib.mkIf pkgs.stdenv.isLinux {
     programs.hyprland.enable = true;
     home-manager.users.${config.user} = {
-      services.kanshi = {
-        enable = true;
-        systemdTarget = "xdg-desktop-portal-hyprland.service";
-        profiles = {
-          undocked = {
-            outputs = [
-              {
-                criteria = "eDP-1";
-              }
-            ];
+      home.file."${config.home-manager.users.${config.user}.home.homeDirectory}/.config/wallpapers" = {
+        source = ../../../misc/wallpapers;
+        recursive = true;
+      };
+      services = {
+        kanshi = {
+          enable = true;
+          systemdTarget = "xdg-desktop-portal-hyprland.service";
+          profiles = {
+            undocked = {
+              outputs = [
+                {
+                  criteria = "eDP-1";
+                }
+              ];
+            };
+            docked = {
+              outputs = [
+                {
+                  criteria = "eDP-1";
+                  status = "disable";
+                }
+                {
+                  criteria = "Creatix Polymedia GmbH 315-DP 82282400300";
+                  mode = "2560x1440@59.95100";
+                  position = "0,0";
+                }
+              ];
+            };
           };
-          docked = {
-            outputs = [
-              {
-                criteria = "eDP-1";
-                status = "disable";
-              }
-              {
-                criteria = "Creatix Polymedia GmbH 315-DP 82282400300";
-                mode = "2560x1440@59.95100";
-                position = "0,0";
-              }
+        };
+        hyprpaper = {
+          enable = true;
+          settings = {
+            ipc = "on";
+            preload = [ 
+              "${config.home-manager.users.${config.user}.home.homeDirectory}/.config/wallpapers/Kojiro.png" 
+            ];
+            wallpaper = [
+              ",${config.home-manager.users.${config.user}.home.homeDirectory}/.config/wallpapers/Kojiro.png" 
             ];
           };
         };

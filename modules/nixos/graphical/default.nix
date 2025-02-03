@@ -16,7 +16,7 @@
       imports = [
         inputs.nix-colors.homeManagerModules.default
       ];
-      colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
+      colorScheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-hard;
       home.packages = with pkgs; [
         zathura
         gimp
