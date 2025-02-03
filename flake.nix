@@ -15,6 +15,10 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    astal = {
+      url = "github:aylur/astal";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-colors.url = "github:misterio77/nix-colors";
     ags.url = "github:Aylur/ags";
   };
@@ -36,6 +40,17 @@
     nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule {
       module = import ./packages/neovim;
     };
+    pkgs = nixpkgs.legacyPackages.${system};
+    astal-lua = inputs.astal.lib.mkLuaPackage {
+      inherit pkgs;
+      name = "astal-lua";
+      src = ./packages/astal;
+      extraPackages = [
+        inputs.astal.packages.${system}.battery
+        inputs.astal.packages.${system}.hyprland
+        pkgs.dart-sass
+      ];
+    };
   in {
     nixosConfigurations = {
       helm = import ./hosts/helm { inherit inputs globals overlays; };
@@ -43,6 +58,7 @@
     };
     packages.${system} = {
       neovim = nvim;
+      astal-lua = astal-lua;
     };
     templates = {
       latex = {

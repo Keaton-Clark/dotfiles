@@ -1,4 +1,4 @@
-{pkgs, config, lib, inputs, ...}: {
+{pkgs, config, lib, inputs, outputs, ...}: {
   config = lib.mkIf pkgs.stdenv.isLinux {
     programs.hyprland.enable = true;
     home-manager.users.${config.user} = {
@@ -113,6 +113,9 @@
           };
           windowrulev2 = [
             "suppressevent maximize, class:.*"
+          ];
+          exec = [
+            "${inputs.astal.packages.x86_64-linux.io}/bin/astal -q || true && ${inputs.self.packages.x86_64-linux.astal-lua}/bin/astal-lua"
           ];
         };
         extraConfig = ''
