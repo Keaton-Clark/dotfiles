@@ -12,6 +12,7 @@
           systemdTarget = "xdg-desktop-portal-hyprland.service";
           profiles = {
             undocked = {
+              exec = "hyprctl reload";
               outputs = [
                 {
                   criteria = "eDP-1";
@@ -19,6 +20,7 @@
               ];
             };
             docked = {
+              exec = "hyprctl reload";
               outputs = [
                 {
                   criteria = "eDP-1";
@@ -115,7 +117,7 @@
             "suppressevent maximize, class:.*"
           ];
           exec = [
-            "${inputs.astal.packages.x86_64-linux.io}/bin/astal -q || true && ${inputs.self.packages.x86_64-linux.astal-lua}/bin/astal-lua"
+            "sleep 2 && ${inputs.astal.packages.x86_64-linux.io}/bin/astal -q || true && ${inputs.self.packages.x86_64-linux.astal-lua}/bin/astal-lua"
           ];
         };
         extraConfig = ''
