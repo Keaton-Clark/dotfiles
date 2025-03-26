@@ -1,0 +1,9 @@
+@import 
+  'Theme.scss'
+  , 'Time.scss'
+  , 'Workspaces.scss';
+
+.Bar {
+  background-color: $base00;
+  border: .2em solid darken($base00, 1%);
+}

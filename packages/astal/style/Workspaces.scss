@@ -1,0 +1,26 @@
+.Workspaces {
+  background-color: $base00;
+  color: $base05;
+  border: .2em solid darken($base00, 1%);
+  > button {
+    background-color: $base01;
+    color: $base05;
+    border-radius: 0px;
+  }
+  .has-clients {
+    border-bottom: .2em solid $base0D;
+    > label {
+      color: $base0D;
+    }
+  }
+  .focused {
+    border-bottom: .2em solid $base0B;
+    margin-right: .2em;
+    margin-left: .2em;
+    > label {
+      color: $base0B;
+      font-weight: 900;
+      font-size: 1.5em;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-{pkgs, config, lib, inputs, ...}: {
+{pkgs, config, lib, inputs, outputs, ...}: {
   config = lib.mkIf pkgs.stdenv.isLinux {
     programs.hyprland.enable = true;
     home-manager.users.${config.user} = {
@@ -12,6 +12,7 @@
           systemdTarget = "xdg-desktop-portal-hyprland.service";
           profiles = {
             undocked = {
+              exec = "hyprctl reload";
               outputs = [
                 {
                   criteria = "eDP-1";
@@ -19,6 +20,7 @@
               ];
             };
             docked = {
+              exec = "hyprctl reload";
               outputs = [
                 {
                   criteria = "eDP-1";
@@ -113,6 +115,9 @@
           };
           windowrulev2 = [
             "suppressevent maximize, class:.*"
+          ];
+          exec = [
+            "sleep 2 && ${inputs.astal.packages.x86_64-linux.io}/bin/astal -q || true && ${inputs.self.packages.x86_64-linux.astal-lua}/bin/astal-lua"
           ];
         };
         extraConfig = ''
