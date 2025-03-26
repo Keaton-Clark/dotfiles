@@ -45,7 +45,6 @@
       in {
         # Allow Nix to manage the default applications list
         mimeApps.enable = true;
-
         # Set directories for application defaults
         userDirs = {
           enable = true;
@@ -58,7 +57,9 @@
           desktop = "${homeDirectory}/other/desktop";
           publicShare = "${homeDirectory}/other/public";
           templates = "${homeDirectory}/other/templates";
-          extraConfig = { XDG_DEV_DIR = "${homeDirectory}/dev"; };
+          extraConfig = { 
+            XDG_DEV_DIR = "${homeDirectory}/dev"; 
+          };
         };
       };
     };

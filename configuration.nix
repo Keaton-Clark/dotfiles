@@ -35,10 +35,6 @@
       "ebdbb2"
     ];
   };
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
   security.rtkit.enable = true;
   services.openssh.enable = true;
   services.tlp.enable = true;

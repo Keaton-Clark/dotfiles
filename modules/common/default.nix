@@ -55,6 +55,7 @@
     home-manager.useUserPackages = true;
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
       "google-chrome"
+      "discord"
     ];
 
     home-manager.users.${config.user}.home.stateVersion = stateVersion;

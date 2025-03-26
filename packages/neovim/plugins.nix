@@ -91,6 +91,8 @@
         marksman.enable = true;
         texlab.enable = true;
         pylsp.enable = true;
+        tsserver.enable = true;
+        cssls.enable = true;
       };
     };
     lualine = {

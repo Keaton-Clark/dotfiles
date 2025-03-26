@@ -1,0 +1,13 @@
+.Time {
+  border: .2em solid darken($base00, 1%);
+  background-color: $base01;
+  color: $base05;
+  margin-left: 3em;
+  margin-right: 3em;
+  label {
+    font-weight: bold;
+    font-size: 1.25em;
+    margin-left: 3em;
+    margin-right: 3em;
+  }
+}

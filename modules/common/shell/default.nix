@@ -8,8 +8,10 @@
       pkgs.comma
       pkgs.man-pages
       pkgs.man-pages-posix
-      pkgs.jq
       pkgs.fzf
+      pkgs.rofi-menugen
+      pkgs.jq
+      pkgs.socat
   ];
   home-manager.users.${config.user} = {
     programs.git = {
