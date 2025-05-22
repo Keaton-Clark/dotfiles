@@ -62,6 +62,11 @@
     cmp-tmux = {
       enable = true;
     };
+    dap = {
+      enable = true;
+      configurations = {
+      };
+    };
     diffview = {
       enable = true;
     };
@@ -105,9 +110,6 @@
       enable = true;
     };
     noice = {
-      enable = true;
-    };
-    notify = {
       enable = true;
     };
     telescope = {

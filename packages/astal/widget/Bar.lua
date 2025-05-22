@@ -1,23 +1,26 @@
 local Widget = require("astal.gtk3.widget")
 local Anchor = require("astal.gtk3").Astal.WindowAnchor
-local Battery = require("lgi").require("AstalBattery")
 local astal = require("astal")
 local Gdk = astal.require("Gdk", "3.0")
 local GLib = astal.require("GLib")
 local Variable = astal.Variable
 local bind = astal.bind
 local Workspaces = require("widget.Workspaces")
+local BatteryLevel = require("widget.Battery")
+local Network = require("widget.Network")
 
 
 
 local Left = Widget.Box({
 	halign = "START",
-	Workspaces(),
+	hexpand = true,
+	class_name = "Left",
+	Widget.Box({
+	})
 })
 local Center = Widget.Box({
 	halign = "CENTER",
-	Widget.Label({
-	})
+	Workspaces(),
 })
 
 local function Time(format)
@@ -36,36 +39,22 @@ local function Time(format)
 	})
 end
 
-local function BatteryLevel()
-	local bat = Battery.get_default()
-
-	return Widget.Box({
-		class_name = "Battery",
-		visible = bind(bat, "is-present"),
-		Widget.Icon({
-			icon = bind(bat, "battery-icon-name"),
-		}),
-		Widget.Label({
-			label = bind(bat, "percentage"):as(function(p)
-				return tostring(math.floor(p * 100)) .. "%"
-			end),
-		}),
-	})
-end
-
 local Right = Widget.CenterBox({
 	halign = "END",
 	hexpand = true,
 	class_name = "Right",
-	BatteryLevel(),
-	Time("%H:%M")
+	Widget.Box({
+		BatteryLevel(),
+		Network(),
+		Time("%H:%M"),
+	})
 })
 
 
 return function(monitor)
 	return Widget.Window({
 		monitor = monitor,
-		anchor = Anchor.TOP + Anchor.LEFT + Anchor.RIGHT,
+		anchor = Anchor.TOP,
 		exclusivity = "EXCLUSIVE",
 		Widget.CenterBox({
 			class_name = "Bar",

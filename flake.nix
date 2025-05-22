@@ -48,6 +48,7 @@
       extraPackages = [
         inputs.astal.packages.${system}.battery
         inputs.astal.packages.${system}.hyprland
+        inputs.astal.packages.${system}.network
         pkgs.dart-sass
       ];
     };

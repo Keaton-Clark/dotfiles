@@ -19,14 +19,6 @@ return function()
 			table.sort(wss, function(a, b)
 				return a.id < b.id;
 			end)
-			for index, value in ipairs(wss) do
-				print(value, #value.clients)
-				for key, value in pairs(value.clients) do
-					print(value)
-				end
-				
-			end
-
 			return map(wss, function(ws)
 				return Widget.Button({
 					class_name = bind(hypr, "focused-workspace"):as(function(fw)

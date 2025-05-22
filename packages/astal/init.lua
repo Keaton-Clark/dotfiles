@@ -2,7 +2,7 @@ local App = require("astal.gtk3.app")
 local Bar = require("widget.Bar")
 local astal = require("astal")
 
-local scss = "./style/Bar.scss";
+local scss = "/home/kc/.config/nix/packages/astal/style/Bar.scss";
 local css = "/tmp/Bar.css";
 
 astal.exec(string.format("sass %s %s", scss, css))

@@ -9,6 +9,7 @@
       relativenumber = true;
       cursorline = true;
       updatetime = 250;
+      colorcolumn = "120";
     };
     autoCmd = [
       {
@@ -19,9 +20,17 @@
     ];
     extraPackages = with pkgs; [
       ripgrep
+      direnv
     ];
     globals = {
       mapleader = " ";
     };
+    extraConfigLuaPost = ''
+      require('dap').adapters.cppdbg = {
+        type = "executable",
+        command = "gdb",
+        args = { "-i", "dap" },
+      }
+    '';
   };
 }

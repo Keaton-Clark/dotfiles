@@ -1,6 +1,7 @@
 {pkgs, config, lib, inputs, outputs, ...}: {
   config = lib.mkIf pkgs.stdenv.isLinux {
     programs.hyprland.enable = true;
+    services.upower.enable = true;
     home-manager.users.${config.user} = {
       home.file."${config.home-manager.users.${config.user}.home.homeDirectory}/.config/wallpapers" = {
         source = ../../../misc/wallpapers;
